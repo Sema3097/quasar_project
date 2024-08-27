@@ -5,7 +5,7 @@
       <q-input v-model="dataToSend.surname" label="Surname" />
       <q-select v-model="dataToSend.city" :options="options" label="City" />
       <q-input v-model="dataToSend.email" label="Email" />
-      <q-input v-model="dataToSend.date" filled type="date" hint="Date"/>
+      <q-input v-model="dataToSend.date" filled type="date" hint="Date" />
       <div>
         <q-btn label="Save" type="submit" color="primary" @click="postData" />
       </div>
@@ -53,14 +53,9 @@ export default {
         email: this.dataToSend.email,
         date: this.dataToSend.date,
       };
-      this.dataToSend.name = "";
-      this.dataToSend.surname = "";
-      this.dataToSend.city = "";
-      this.dataToSend.email = "";
-      this.dataToSend.date = "";
 
       axios
-        .post("http://localhost:9000/", {
+        .post("https://jsonplaceholder.typicode.com/posts", {
           newData,
         })
         .then(function (res) {
@@ -69,6 +64,12 @@ export default {
         .catch(function (error) {
           console.error(error);
         });
+
+      this.dataToSend.name = "";
+      this.dataToSend.surname = "";
+      this.dataToSend.city = "";
+      this.dataToSend.email = "";
+      this.dataToSend.date = "";
     },
   },
 };
